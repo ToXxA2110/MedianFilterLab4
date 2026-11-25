@@ -1,0 +1,50 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="MedianFilterApp.MainWindow"
+        Title="Лабораторная работа №4 — Вариант 8 (Медианный фильтр 3×3)"
+        Width="1050" Height="700" WindowStartupLocation="CenterScreen">
+    <Grid Margin="12" RowDefinitions="Auto,*,Auto,140">
+        <!-- Панель управления -->
+        <WrapPanel Grid.Row="0" Margin="0,0,0,10" VerticalAlignment="Center">
+            <Button x:Name="BtnLoad" Content="1. Выбрать изображение" Padding="12,6" Margin="0,0,8,0" Click="BtnLoad_Click"/>
+            <TextBlock Text="Потоков в пуле:" VerticalAlignment="Center" Margin="8,0,6,0"/>
+            <ComboBox x:Name="CmbThreads" Width="70" SelectedIndex="2">
+                <ComboBoxItem Content="1"/>
+                <ComboBoxItem Content="2"/>
+                <ComboBoxItem Content="4"/>
+                <ComboBoxItem Content="8"/>
+                <ComboBoxItem Content="16"/>
+            </ComboBox>
+            <Button x:Name="BtnStart" Content="2. Запустить фильтр 3×3" Padding="12,6" Margin="12,0,8,0" IsEnabled="False" Click="BtnStart_Click"/>
+            <Button x:Name="BtnCancel" Content="Отмена" Padding="12,6" Margin="0,0,8,0" IsEnabled="False" Click="BtnCancel_Click"/>
+            <Button x:Name="BtnSave" Content="3. Сохранить результат" Padding="12,6" IsEnabled="False" Click="BtnSave_Click"/>
+        </WrapPanel>
+
+        <!-- Просмотр До / После -->
+        <Grid Grid.Row="1" Margin="0,0,0,10" ColumnDefinitions="*,10,*">
+            <Border Grid.Column="0" BorderBrush="#CCCCCC" BorderThickness="1" Background="#F5F5F5">
+                <DockPanel>
+                    <TextBlock DockPanel.Dock="Top" Text="Исходное изображение" FontWeight="Bold" Padding="6" Background="#E4E4E4"/>
+                    <Image x:Name="ImgOriginal" Stretch="Uniform" Margin="4"/>
+                </DockPanel>
+            </Border>
+
+            <Border Grid.Column="2" BorderBrush="#CCCCCC" BorderThickness="1" Background="#F5F5F5">
+                <DockPanel>
+                    <TextBlock DockPanel.Dock="Top" Text="Результат (Медианный фильтр 3×3)" FontWeight="Bold" Padding="6" Background="#E4E4E4"/>
+                    <Image x:Name="ImgResult" Stretch="Uniform" Margin="4"/>
+                </DockPanel>
+            </Border>
+        </Grid>
+
+        <!-- Прогресс-бар -->
+        <Grid Grid.Row="2" Margin="0,0,0,8">
+            <ProgressBar x:Name="ProgressBar" Height="24" Minimum="0" Maximum="100"/>
+            <TextBlock x:Name="TxtStatus" Text="Ожидание выбора файла..." HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold"/>
+        </Grid>
+
+        <!-- Журнал событий -->
+        <TextBox x:Name="TxtLog" Grid.Row="3" IsReadOnly="True" AcceptsReturn="True"
+                 FontFamily="Menlo, Monaco, Consolas" FontSize="11.5" Background="#1E1E1E" Foreground="#DCDCDC" Padding="6"/>
+    </Grid>
+</Window>
